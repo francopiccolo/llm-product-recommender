@@ -1,0 +1,17 @@
+[project]
+name = "llm-product-recommender"
+version = "0.1.0"
+description = "Gets products recommendations from an e-commerce products database"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "elasticsearch>=9.0.2",
+    "elasticsearch8>=8.18.1",
+    "fastapi>=0.115.12",
+    "openai>=1.84.0",
+    "pytest>=8.4.0",
+    "requests>=2.32.3",
+    "tiktoken>=0.9.0",
+    "tqdm>=4.67.1",
+    "uvicorn>=0.34.3",
+]
