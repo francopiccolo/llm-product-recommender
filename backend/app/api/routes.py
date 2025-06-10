@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 
-from backend.app.interfaces.docs_fetcher import DocsFetcher
+from backend.app.interfaces.docs_fetcher import DocsToIndexFetcher
 from backend.app.interfaces.docs_store import DocsStoreInterface
 from backend.app.interfaces.llm import LLMInterface
 from backend.app.dependencies import (
-    get_docs_fetcher,
+    get_docs_to_index_fetcher,
     get_docs_store,
     get_llm,
 )
@@ -26,12 +26,11 @@ def rag(
 
     return query(q, store, llm)
 
-@router.post("/index-docs")
-def index_docs(
+@router.post("/index-documents")
+def index_documents(
     docs_store: DocsStoreInterface = Depends(get_docs_store),
-    docs_fetcher: DocsFetcher = Depends(get_docs_fetcher),
+    docs_to_index_fetcher: DocsToIndexFetcher = Depends(get_docs_to_index_fetcher),
 ):
     """Indexes products into the documents store"""
-
-    index_docs(docs_fetcher, docs_store)
+    index_docs(docs_to_index_fetcher, docs_store)
     return {"status": "indexed"}

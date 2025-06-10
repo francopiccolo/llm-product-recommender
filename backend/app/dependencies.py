@@ -8,8 +8,9 @@ def get_docs_store():
     index = "product_vectors"
     return ElasticDocsStore(es, index)
 
-def get_docs_fetcher():
-    pass
+def get_docs_to_index_fetcher():
+    from backend.tests.conftest import get_sample_products
+    return get_sample_products
 
 def get_llm():
     return GPT()
